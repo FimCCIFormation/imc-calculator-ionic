@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      {{ title }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,38 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">{{ title }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+    <div *ngIf="!isShowTrueForm">
+      <ion-text [style.color]="this.imc < 18.5 ? 'red':'green'">
+        <h1>{{ imc }}</h1>
+      </ion-text>
+      <ion-text [color]="this.imc < 30 ? 'success':this.imc < 40? 'warning':'danger'">
+        <h1>{{ imc }}</h1>
+      </ion-text>
+    </div>
+    <ion-text [color]="status">
+      <h1 size="large">{{ imc }}</h1>
+    </ion-text>
+    <ion-list>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="height" id="height" label="Taille" [clearInput]="true"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" [(ngModel)]="weight" id="weight" label="Poids" [clearInput]="true">
+        </ion-input>
+      </ion-item>
+
+      <ion-button (click)="computeIMC()" expand="full">Calcul</ion-button>
+      <ion-toggle [(ngModel)]="isShowTrueForm" labelPlacement="stacked">Afficher que la version finalisée</ion-toggle>
+
+    </ion-list>
+    <hr>
+    <strong>{{ cpt }}</strong><br>
+    <ion-button (click)="incremente()">++</ion-button>
   </div>
 </ion-content>
