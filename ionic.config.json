@@ -1,0 +1,7 @@
+{
+  "name": "imcCalculator",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
